@@ -1,0 +1,19 @@
+contract SomeContract {
+    address public owner;
+
+    address public currentContract;
+
+    function SomeContract(address initContract){
+        currentVersion = initContract;
+        owner = msg.sender;
+    }
+
+    function update(address newAddress){
+        if(msg.sender != owner) throw;
+        currentVersion = newAddress;
+    }
+
+    function myFunction(){
+        currentContract.delegatecall(msg.data)
+    }
+}
